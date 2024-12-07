@@ -26,33 +26,37 @@ function OnStart()
 	
  var staff = []
 
+	var staffLay = app.CreateLayout( "Linear", "FillX,Wrap" )
+
 	for(let i = 0;i<save.company.staff.length;i++){
+		var personLay = app.CreateLayout("Linear", "")
+		staffLay.AddChild(personLay)
 	  var person = save.company.staff[i]
 	  var personObj = {}
 	  
 	  personObj.name = app.CreateText(person.name)
 	  personObj.name.SetTextSize( 24 )
-	  lay.AddChild(personObj.name)
+	  personLay.AddChild(personObj.name)
 	  
 	  personObj.researchText = app.CreateText("Research Points:")
-	  lay.AddChild(personObj.researchText)
+	  personLay.AddChild(personObj.researchText)
 	  personObj.research = app.CreateTextEdit( person.researchF*500)
-	  lay.AddChild( personObj.research )
+	  personLay.AddChild( personObj.research )
 	  
 	  personObj.techText = app.CreateText("Tech Points:")
-	  lay.AddChild(personObj.techText)
+	  personLay.AddChild(personObj.techText)
 	  personObj.tech = app.CreateTextEdit( person.tF*500 )
-	  lay.AddChild( personObj.tech )
+	  personLay.AddChild( personObj.tech )
 	  
 	  personObj.desText = app.CreateText("Design Points:")
-	  lay.AddChild(personObj.desText)
+	  personLay.AddChild(personObj.desText)
 	  personObj.des = app.CreateTextEdit( person.dF*500 )
-	  lay.AddChild( personObj.des )
+	  personLay.AddChild( personObj.des )
 	  
 	  personObj.speedText = app.CreateText("Speed:")
-	  lay.AddChild(personObj.speedText)
+	  personLay.AddChild(personObj.speedText)
 	  personObj.speed = app.CreateTextEdit( person.speedF*500 )
-	  lay.AddChild( personObj.speed )
+	  personLay.AddChild( personObj.speed )
 	  
 	  
 	  
@@ -61,6 +65,7 @@ function OnStart()
 	  staff.push(personObj)
 	  
 	}
+	lay.AddChild(staffLay)
 	
   var saveChanges = app.CreateButton( "Save changes" )
   lay.AddChild(saveChanges)

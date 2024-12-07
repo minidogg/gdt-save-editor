@@ -1,11 +1,28 @@
 const app = {}
 let saveFile = "{}"
 
-app.CreateLayout = ()=>{
+app.CreateLayout = (type, options)=>{
 	let lay = document.createElement("div")
 	lay.AddChild = (child)=>{
 		lay.appendChild(child)
 	}
+
+	options.split(",").forEach(option=>{
+		switch(option){
+			case("FillXY"):
+				lay.style.width = "100%"
+				lay.style.height = "100%"
+				break;
+			case("Wrap"):
+				lay.style.display = "flex"
+				lay.style.flexWrap = "wrap"
+				break;
+			case("FillX"):
+				lay.style.width = "100%"
+				break;
+		}
+	})
+
 	return lay
 }
 app.AddLayout = (lay)=>{
@@ -24,9 +41,10 @@ app.CreateText = (textContent)=>{
 
 	return text
 }
-app.CreateTextEdit = (property)=>{
+app.CreateTextEdit = (initValue)=>{
 	let textEdit = document.createElement("input")
-	textEdit.value = property
+	textEdit.value = initValue
+	if(typeof(initValue)=="number")textEdit.type = "number"
 	textEdit.addEventListener("change", (ev)=>{
 		// property = textEdit.value
 	})
