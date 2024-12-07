@@ -1,5 +1,6 @@
 const app = {}
 let saveFile = "{}"
+const containerEl = document.getElementById("container")
 
 app.CreateLayout = (type, options)=>{
 	let lay = document.createElement("div")
@@ -26,7 +27,7 @@ app.CreateLayout = (type, options)=>{
 	return lay
 }
 app.AddLayout = (lay)=>{
-	document.body.appendChild(lay)
+	containerEl.appendChild(lay)
 }
 
 app.ReadFile = (fileName)=>{
@@ -66,22 +67,36 @@ app.CreateButton = (textContent)=>{
 	return button
 }
 
+let saveFileEl = document.getElementById("saveFile")
+
 app.WriteFile = (name, text)=>{
-	var a = window.document.createElement('a');
-	a.href = window.URL.createObjectURL(new Blob([text], {type: 'text/plain'}));
-	a.download = name;
+	// var a = window.document.createElement('a');
+	// a.href = window.URL.createObjectURL(new Blob([text], {type: 'text/plain'}));
+	// a.download = name;
 
-	document.body.appendChild(a);
-	a.click();
+	// document.body.appendChild(a);
+	// a.click();
 
-	document.body.removeChild(a);
+	// document.body.removeChild(a);
+	saveFileEl.value = text
 }
 
 app.ShowPopup = (text)=>{
 	alert(text)
 }
 
+saveFileEl.addEventListener('change', ()=>{
+	containerEl.innerHTML = ""
+	saveFile = saveFileEl.value
+	OnStart()
+	console.log("refresh")
+})
+document.getElementById("copySave").addEventListener('click', ()=>{
+	window.navigator.clipboard.writeText(saveFileEl.value)
+})
+
 async function DroidScriptStart(){
 	saveFile = await (await fetch("/save.json")).text()
+	saveFileEl.value = saveFile
 	OnStart()
 }
