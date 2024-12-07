@@ -1,0 +1,1 @@
+This is an old Game Dev Tycoon save editor for Android that I originally made using DroidScript. I recently ported it over to HTML5 for other people to use.

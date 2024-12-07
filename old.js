@@ -31,7 +31,7 @@ function OnStart()
 	  var personObj = {}
 	  
 	  personObj.name = app.CreateText(person.name)
-	  personObj.name.SetTextSize( 16 )
+	  personObj.name.SetTextSize( 24 )
 	  lay.AddChild(personObj.name)
 	  
 	  personObj.researchText = app.CreateText("Research Points:")
@@ -77,7 +77,7 @@ function OnStart()
     }
     
     
-    app.WriteFile( "save.json",JSON.stringify(save) )
+    app.WriteFile( "modded_save.json",JSON.stringify(save) )
    
     app.ShowPopup( "Saved" )
   }
