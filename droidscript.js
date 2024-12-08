@@ -94,6 +94,10 @@ saveFileEl.addEventListener('change', ()=>{
 document.getElementById("copySave").addEventListener('click', ()=>{
 	window.navigator.clipboard.writeText(saveFileEl.value)
 })
+document.getElementById("clearSave").addEventListener("click", ()=>{
+  saveFileEl.value = ""
+  OnStart()
+})
 
 async function DroidScriptStart(){
 	saveFile = await (await fetch("/save.json")).text()
