@@ -97,6 +97,7 @@ document.getElementById("copySave").addEventListener('click', ()=>{
 document.getElementById("clearSave").addEventListener("click", ()=>{
 containerEl.innerHTML = ""
   saveFileEl.value = ""
+  saveFile = ""
   OnStart()
 })
 
